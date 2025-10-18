@@ -122,7 +122,7 @@ function analyzeSalesData(data, options) {
             }
             return 0;
         }).slice(0, 10)//);// Формируем топ-10 товаров
-        console.log(seller.top_products);
+        //console.log(seller.top_products);
     });
     // @TODO: ^^^Назначение премий на основе ранжирования^^^
 

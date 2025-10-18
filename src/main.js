@@ -112,6 +112,11 @@ function analyzeSalesData(data, options) {
     sellerStats.forEach((seller, index) => {
         seller.bonus = calculateBonus(index, sellerStats.length, seller);// Считаем бонус
         seller.top_products = Object.entries(seller.products_sold)
+        .map(([sku, quantity]) => ({ sku, quantity }))
+        .sort((a, b) => b.quantity - a.quantity)
+        .slice(0, 10);
+        
+        /*seller.top_products = Object.entries(seller.products_sold)
         .map(product => [{sku: product[0], quantity: product[1]}])
         .sort((product1, product2) => {
             if (product1[0].quantity > product2[0].quantity) {
@@ -121,8 +126,8 @@ function analyzeSalesData(data, options) {
                 return 1;
             }
             return 0;
-        }).slice(0, 10)//);// Формируем топ-10 товаров
-        //console.log(seller.top_products);
+        }).slice(0, 10);//);// Формируем топ-10 товаров
+        //console.log(seller.top_products);*/
     });
     // @TODO: ^^^Назначение премий на основе ранжирования^^^
 
